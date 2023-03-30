@@ -10,7 +10,7 @@ app.set('view engine', 'ejs')
 
 app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }))
 
-app.post('/interactions', async function (req, res) {
+app.post('/interaction', async function (req, res) {
     const { type, id, data, token, member } = req.body;
   
     if (type === InteractionType.PING) {
@@ -20,11 +20,6 @@ app.post('/interactions', async function (req, res) {
     if (type === InteractionType.APPLICATION_COMMAND) {
       console.log(data);
     }
-})
-
-//generic message at port 3000
-app.post('/', (req, res) => {
-    res.send('Hello World!')
 })
 
 app.listen(3000, () => {
