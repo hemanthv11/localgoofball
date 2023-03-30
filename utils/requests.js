@@ -1,8 +1,7 @@
-require('dotenv').config()
-const fetch = require('node-fetch')
-const {verifyKey} = require('discord-interactions')
-
-
+import dotenv from 'dotenv';
+dotenv.config();
+import fetch from 'node-fetch'
+import {verifyKey} from 'discord-interactions'
 
 export function VerifyDiscordRequest(clientKey) {
     return function (req, res, buf, encoding) {
@@ -18,7 +17,8 @@ export function VerifyDiscordRequest(clientKey) {
   }
 
 export async function DiscordRequest(endpoint, options) {
-    const url = '${process.env.BOT_TOKEN}' + endpoint; //could break the code if the env variable is not set or retrieved properly
+    const url = process.env.DISCORD_API+ endpoint;
+    console.log(url);
     if (options.body) options.body = JSON.stringify(options.body);
     const res = await fetch(url, {
         headers: {
@@ -27,7 +27,6 @@ export async function DiscordRequest(endpoint, options) {
         },
         ...options
     });
-    // throw API errors
     if (!res.ok) {
         const data = await res.json();
         console.log(res.status);

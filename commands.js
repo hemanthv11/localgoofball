@@ -1,4 +1,4 @@
-const SAY_HI = {
+const say_hi = {
     type: 1,
     name: 'hi',
     description: 'Says hi',
@@ -14,7 +14,7 @@ const SAY_HI = {
 
 };
 
-const SAY_BYE = {
+const say_bye = {
     type: 1,
     name: 'bye',
     description: 'Says bye',
@@ -29,4 +29,4 @@ const SAY_BYE = {
     ]
 };
 
-export const ALL_COMMANDS = [SAY_HI, SAY_BYE];
+export const ALL_COMMANDS = [say_hi, say_bye];

@@ -2,9 +2,11 @@
   "name": "local-goofball",
   "version": "0.0.1",
   "description": "",
+  "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon exec babel-node app.js"
   },
   "keywords": [
     "discord",
@@ -21,6 +23,9 @@
     "node-fetch": "^3.3.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
     "dotenv": "^16.0.3"
   }
 }
