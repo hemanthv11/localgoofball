@@ -18,7 +18,6 @@ export function VerifyDiscordRequest(clientKey) {
 
 export async function DiscordRequest(endpoint, options) {
     const url = process.env.DISCORD_API+ endpoint;
-    console.log(url);
     if (options.body) options.body = JSON.stringify(options.body);
     const res = await fetch(url, {
         headers: {

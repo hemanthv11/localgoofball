@@ -9,7 +9,7 @@ const app = express()
 app.set('view engine', 'ejs')
 
 app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }))
-app.use(express.urlencoded({ extended: true }))
+
 app.post('/interactions', async function (req, res) {
     const { type, id, data, token, member } = req.body;
   
