@@ -15,12 +15,9 @@ export async function registerCommands(appId, command) {
     //Creating a new DiscordRequest object with the endpoint, method, and body.
     const request = DiscordRequest(endpoint, 'POST', command)
     try {
-        await DiscordRequest(endpoint, { method: 'PUT', body: command });
+        await DiscordRequest(endpoint, 'POST', command)
     } 
     catch (err) {
         console.error(err);
     }
 }
-
-//call the function with the application id and the commands to register.
-registerCommands(process.env.APP_ID, ALL_COMMANDS)

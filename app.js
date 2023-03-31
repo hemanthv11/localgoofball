@@ -4,6 +4,8 @@ import fs from 'fs'
 import express from 'express'
 import https from 'https'
 import dotenv from 'dotenv'
+import { registerCommands } from './utils/register.js'
+import { ALL_COMMANDS } from './commands.js'
 dotenv.config()
 const app = express()
 app.set('view engine', 'ejs')
@@ -24,4 +26,5 @@ app.post('/interaction', async function (req, res) {
 
 app.listen(3000, () => {
     console.log('Listening on port 3000')
+	registerCommands(process.env.APP_ID, ALL_COMMANDS);
 })
