@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import { registerCommands } from './utils/register.js'
 import csv from 'csv-parser'
 import { ALL_COMMANDS } from './commands.js'
+import core from './core.js'
 dotenv.config()
 const app = express()
 app.set('view engine', 'ejs')
@@ -20,10 +21,14 @@ app.post('/interactions', async function (req, res) {
     if (type === InteractionType.APPLICATION_COMMAND) {
 		console.log(data);
 		if(data.name === 'sayhi') {
+			const Interaction = req.body;
+			let userid = Interaction.member.user.id;
+			let username = Interaction.member.user.username;
+			let response = 'Hello ' + username + '!';
 			return res.send({
 				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 				data: {
-					content: 'Hello World!'
+					content: response,
 				},
 			});
 		}
