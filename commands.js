@@ -1,32 +1,17 @@
-const say_hi = {
-    type: 1,
-    name: 'hi',
-    description: 'Says hi',
-    options: [
-        {
-            type: 6,
-            name: 'User',
-            description: 'The user to say hi to',
-            required: false,
-            min_length: 1
-        }
-    ]
+import { registerCommands } from "./utils/register.js";
 
+const SAY_HI = {
+    name: 'sayhi',
+    description: 'Basic command',
+    type: 1,
 };
 
-const say_bye = {
+const SAY_BYE = {
+    name: 'saybye',
+    description: 'Basic command',
     type: 1,
-    name: 'bye',
-    description: 'Says bye',
-    options: [
-        {
-            type: 6,
-            name: 'User',
-            description: 'The user to say bye to',
-            required: false,
-            min_length: 1
-        }
-    ]
 };
 
-export const ALL_COMMANDS = [say_hi, say_bye];
+export const ALL_COMMANDS = [SAY_HI, SAY_BYE];
+
+registerCommands(process.env.APP_ID, ALL_COMMANDS);
