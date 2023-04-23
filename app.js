@@ -39,14 +39,6 @@ app.post('/interactions', async function (req, res) {
 			});
 		}
     }
-	else if(!req.body.guild_id) {
-		return res.send({
-			type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-			data: {
-				content: 'This bot only works in servers.',
-			},
-		});
-	}
 })
 
 app.listen(3000, () => {
