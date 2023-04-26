@@ -4,7 +4,7 @@ import {VerifyDiscordRequest} from './utils/requests.js'
 import express from 'express'
 import dotenv from 'dotenv'
 import { registerCommands } from './utils/register.js'
-import csv from 'csv-parser'
+import csv from 'csv-parser'	
 import { ALL_COMMANDS } from './commands.js'
 import core from './core.js'
 dotenv.config()
@@ -26,11 +26,21 @@ app.post('/interactions', async function (req, res) {
 			let interaction = req.body;
 			if (!interaction.guild_id) {
 				response = 'Hello there!';
-			  } else {
-				let userid = interaction.member.user.id;
-				let username = interaction.member.user.username;
-				response = 'Hello ' + username + '!';
-			  }
+			}
+			else {
+				if(data.resolved){
+					if(data.resolved.users){
+						const user = data.resolved.users[Object.keys(data.resolved.users)[0]];
+						let userId = user.id;
+						response = `Hello there, <@${userId}>!`
+					}
+				}
+				else{
+					let userid = interaction.member.user.id;
+					let username = interaction.member.user.username;
+					response = 'Hello ' + username + '!';
+				}
+			}
 			return res.send({
 				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 				data: {

@@ -2,16 +2,17 @@ import { registerCommands } from "./utils/register.js";
 
 const SAY_HI = {
     name: 'sayhi',
-    description: 'Basic command',
+    description: 'Say hello to a user',
     type: 1,
+    nsfw: false,
+    options: [{
+        name: 'input',
+        description: 'User to say hello to',
+        type: 9,
+        required: false,
+    }],
 };
 
-const SAY_BYE = {
-    name: 'saybye',
-    description: 'Basic command',
-    type: 1,
-};
-
-export const ALL_COMMANDS = [SAY_HI, SAY_BYE];
+export const ALL_COMMANDS = [SAY_HI];
 
 registerCommands(process.env.APP_ID, ALL_COMMANDS);
