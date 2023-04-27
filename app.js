@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 import { registerCommands } from './utils/register.js'
 import csv from 'csv-parser'	
 import { ALL_COMMANDS } from './commands.js'
-import {sayHi} from './core.js'
+import {sayHi, getRoll, getRollFromId} from './core.js'
 dotenv.config()
 const app = express()
 app.set('view engine', 'ejs')
@@ -25,6 +25,19 @@ app.post('/interactions', async function (req, res) {
 			let response;
 			let interaction = req.body;
 			response = sayHi(data, interaction);
+			console.log('Response sent: <'+response+'>')
+			return res.send({
+				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+				data: {
+					content: response,
+				},
+			});
+		}
+		else if(data.name === 'roll') {
+			let response;
+			let interaction = req.body;
+			response = getRoll(data, interaction);
+			console.log('Response sent: <'+response+'>')
 			return res.send({
 				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 				data: {
