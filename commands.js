@@ -19,11 +19,18 @@ const GET_ROLL = {
     type: 1,
     nsfw: false,
     options: [{
-        name: 'user',
-        description: 'User to get roll number of',
-        type: 9,
-        required: true,
-    }],
+            name: 'user',
+            description: 'User to get roll number of',
+            type: 9,
+            required: true,
+        },
+        {
+            name: 'visibility',
+            description: 'Hide the output from others? Default value is true',
+            type: 5,
+            required: false,
+        }
+    ],
 };
 
 export const ALL_COMMANDS = [SAY_HI, GET_ROLL];
