@@ -33,6 +33,26 @@ const GET_ROLL = {
     ],
 };
 
-export const ALL_COMMANDS = [SAY_HI, GET_ROLL];
+const CREATE_SHEET = {
+    name: 'createsheet',
+    description: 'Creates a new google sheet',
+    type: 1,
+    nsfw: false,
+    options: [{
+            name: 'sheetname',
+            description: 'Name of the sheet to be created',
+            type: 3,
+            required: true,
+        },
+        {
+            name: 'sheettype',
+            description: 'Type of the sheet to be created',
+            type: 3,
+            required: true,
+        }
+    ],
+};
+
+export const ALL_COMMANDS = [SAY_HI, GET_ROLL, CREATE_SHEET];
 
 registerCommands(process.env.APP_ID, ALL_COMMANDS);
