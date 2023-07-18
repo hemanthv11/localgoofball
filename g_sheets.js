@@ -1,1 +1,3 @@
-//google sheets api creating a new sheet
+import {google} from 'googleapis'
+import {getAuthClient} from './g_auth.js'
+
