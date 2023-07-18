@@ -33,6 +33,26 @@ const GET_ROLL = {
     ],
 };
 
+const ROLL_SEARCH = {
+    name: 'rollsearch',
+    description: 'Searches for a user with a given roll number',
+    type: 1,
+    nsfw: false,
+    options: [{
+            name: 'roll',
+            description: 'Roll number to search for',
+            type: 4,
+            required: true,
+        },
+        {
+            name: 'visibility',
+            description: 'Hide the output from others? Default value is true',
+            type: 5,
+            required: false,
+        }
+    ],
+};
+
 const CREATE_SHEET = {
     name: 'createsheet',
     description: 'Creates a new google sheet',
@@ -43,16 +63,10 @@ const CREATE_SHEET = {
             description: 'Name of the sheet to be created',
             type: 3,
             required: true,
-        },
-        {
-            name: 'sheettype',
-            description: 'Type of the sheet to be created',
-            type: 3,
-            required: true,
         }
     ],
 };
 
-export const ALL_COMMANDS = [SAY_HI, GET_ROLL, CREATE_SHEET];
+export const ALL_COMMANDS = [SAY_HI, GET_ROLL, ROLL_SEARCH, CREATE_SHEET];
 
 registerCommands(process.env.APP_ID, ALL_COMMANDS);
