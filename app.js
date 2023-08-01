@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 import { registerCommands } from './utils/register.js'
 import csv from 'csv-parser'	
 import { ALL_COMMANDS } from './commands.js'
-import {sayHi, getRoll, getDetails,createGSheet} from './core.js'
+import {sayHi, getRoll, getDetails} from './core.js'
 dotenv.config()
 const app = express()
 app.set('view engine', 'ejs')
@@ -93,23 +93,9 @@ app.post('/interactions', async function (req, res) {
 				},
 			});
 		}
-		else if(data.name === 'createsheet') {
-			let response;
-			let interaction = req.body;
-			try{
-				response = await createGSheet(data, interaction);
-			} catch(err) {
-				console.log(err);
-				response = 'Error: '+err;
-			}
-			console.log('Response sent: <'+response+'>')
-			return res.send({
-				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-				data: {
-					content: response,
-					flags: 64
-				},
-			});
+		else if(data.name === 'createpoll') {
+			let response
+			let interaction = req.body
 		}
     }
 })

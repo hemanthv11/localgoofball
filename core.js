@@ -114,10 +114,3 @@ function getDetailsFromRoll(roll){
 
 /*******************/
 /*******WIP********/
-export async function createGSheet(data, interaction){
-    let x = await createSheet(data, interaction)
-    if(x)
-        return x
-    else 
-        return "Something went wrong while creating the sheet"
-}

@@ -53,20 +53,32 @@ const ROLL_SEARCH = {
     ],
 };
 
-const CREATE_SHEET = {
-    name: 'createsheet',
-    description: 'Creates a new google sheet',
+const CREATE_POLL = {
+    name: 'createpoll',
+    description: 'Creates a poll',
     type: 1,
     nsfw: false,
     options: [{
-            name: 'sheetname',
-            description: 'Name of the sheet to be created',
+            name: 'question',
+            description: 'Question to ask',
             type: 3,
+            required: true,
+        },
+        {
+            name: 'simplepoll',
+            description: 'Stores data in an individual user level',
+            type: 5,
+            required: true,
+        },
+        {
+            name: 'statisticspoll',
+            description: 'Stores data in a server level',
+            type: 5,
             required: true,
         }
     ],
 };
 
-export const ALL_COMMANDS = [SAY_HI, GET_ROLL, ROLL_SEARCH, CREATE_SHEET];
+export const ALL_COMMANDS = [SAY_HI, GET_ROLL, ROLL_SEARCH, CREATE_POLL];
 
 registerCommands(process.env.APP_ID, ALL_COMMANDS);
