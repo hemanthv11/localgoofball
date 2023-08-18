@@ -73,29 +73,78 @@ app.post('/interactions', async function (req, res) {
 			let response
 			let interaction = req.body
 			response = getDetails(data, interaction)
-			if(data.options[1]){
-				if(data.options[1].value === false) {
-					console.log('Response sent: <'+response+'>')
-					return res.send({
-						type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-						data: {
-							content: response,
-						},
-					});
+			if(!response){
+				console.log('Response sent: <'+response+'>')
+				return res.send({
+					type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+					data: {
+						content: "User not registered",
+						flags : 64
+					},
+				});
+			} else{
+				const embed = {
+					description: "",
+					mention: true,
+					fields: [
+					  {
+						name: "Name:",
+						value: response.name,
+						inline: true,
+					  },
+					  {
+						name: "Discord:",
+						value: `<@${response.userid}>`,
+						inline: true,
+					  },
+					  {
+						name: "Roll:",
+						value: data.options[0].value.toUpperCase(),
+						inline: false,
+					  },
+					],
+					title: "Roll search result:",
+					color: 2789749,
+					thumbnail: {
+					  url:
+						"https://cdn.discordapp.com/icons/1075458660056182946/589ea42311b9479b0cfdaa34cc8cec92.webp?size=128",
+					},
+					footer: {
+					  text:
+						"This information might be wrong. Please contact @risinglion for corrections.",
+					},
+				};
+				if(data.options[1]){
+					if(data.options[1].value === false) {
+						console.log('Response sent')
+						return res.send({
+							type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+							data: {
+								embeds: [embed],
+							},
+						});
+					}
 				}
+				console.log('Response sent')
+				return res.send({
+					type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+					data: {
+						embeds: [embed],
+						flags: 64
+					},
+				});
 			}
-			console.log('Response sent: <'+response+'>')
-			return res.send({
-				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-				data: {
-					content: response,
-					flags: 64
-				},
-			});
 		}
 		else if(data.name === 'createpoll') {
 			let response
 			let interaction = req.body
+			res.send({
+				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+				data: {
+					content: "Poll created",
+					flags: 64
+				}
+			})
 		}
     }
 })

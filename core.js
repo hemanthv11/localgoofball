@@ -1,6 +1,5 @@
 import csv from 'csv-parser'
 import fs from 'fs'
-import { createSheet } from './g_sheets.js';
 
 /*
 Function to quickly test the bot
@@ -78,28 +77,8 @@ roll is the primary key
 export function getDetails(data, interaction){
     const details = getDetailsFromRoll(data.options[0].value)
     if(details == undefined)
-        return "Roll number not found"
-    const embed = {
-        "title": "Student Details",
-        "description": "Details of the student",
-        "color": 16711680,
-        "fields": [
-            {
-                "name": "Name",
-                "value": details.name,
-                "inline": true
-            },
-            {
-                "name": "Roll Number",
-                "value": data.options[0].value,
-                "inline": true
-            }
-        ],
-        "footer": {
-            "text": "This information might be wrong. Please contact @risinglion for corrections."
-        }
-    }
-    return {embeds: [embed]}
+        return false
+    return details
 }
 
 /*
@@ -108,9 +87,13 @@ Uses the RollUser.json file
 roll is the primary key
 */
 function getDetailsFromRoll(roll){
+    roll = roll.toUpperCase()
     const data = JSON.parse(fs.readFileSync('sheets/RollUser.json'))
+    console.log(data[roll])
     return data[roll]
 }
+
+
 
 /*******************/
 /*******WIP********/

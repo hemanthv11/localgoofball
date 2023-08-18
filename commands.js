@@ -41,7 +41,7 @@ const ROLL_SEARCH = {
     options: [{
             name: 'roll',
             description: 'Roll number to search for',
-            type: 4,
+            type: 3,
             required: true,
         },
         {
@@ -54,29 +54,31 @@ const ROLL_SEARCH = {
 };
 
 const CREATE_POLL = {
+    //create poll command to create a poll with an option of two choices simplepoll and statisticspoll
     name: 'createpoll',
     description: 'Creates a poll',
     type: 1,
     nsfw: false,
     options: [{
+            name: 'polltype',
+            description: 'Type of poll to create',
+            type: 3,
+            required: true,
+            choices: [{
+                    name: 'Simple Poll',
+                    value: 'simplepoll'
+                },
+                {
+                    name: 'Statistics Poll',
+                    value: 'statisticspoll'
+                }
+            ]},
+        {
             name: 'question',
             description: 'Question to ask',
             type: 3,
             required: true,
-        },
-        {
-            name: 'simplepoll',
-            description: 'Stores data in an individual user level',
-            type: 5,
-            required: true,
-        },
-        {
-            name: 'statisticspoll',
-            description: 'Stores data in a server level',
-            type: 5,
-            required: true,
-        }
-    ],
+        }]
 };
 
 export const ALL_COMMANDS = [SAY_HI, GET_ROLL, ROLL_SEARCH, CREATE_POLL];
